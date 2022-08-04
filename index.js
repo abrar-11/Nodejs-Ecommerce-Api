@@ -11,6 +11,9 @@ const port = process.env.PORT || 8080;
 const connectDB = require("./database/db");
 const errorHandler = require("./middleware/error");
 
+
+app.use(express.json())
+
 //Middleware for  Error handling 
 app.use(errorHandler)
 
