@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
+
+// * Middleware to Verify user token 
+
 const authProtection = asyncHandler(async (req, res, next) => {
     let token;
     if (
@@ -21,10 +24,37 @@ const authProtection = asyncHandler(async (req, res, next) => {
             throw new Error("Not Authorized..");
         }
     }
+
     if (!token) {
         res.status(401);
         throw new Error("Not Authorized, no Token provided ");
     }
 });
 
-module.exports = authProtection;
+// * Prevent others users to modify/access other person data from accessing the route except Admin  and the actual User
+
+const verifyAuthorization = (req, res, next) => {
+    authProtection(req, res, () => {
+        if (req.user.id === req.params.id || req.user.isAdmin) {
+            next();
+        } else {
+            res.status(401);
+            throw new Error("You are not alowed ..");
+        }
+    });
+};
+
+// * Prevent All users from accessing the route except Admin
+
+const verifyAdmin = (req, res, next) => {
+    authProtection(req, res, () => {
+        if (req.user.isAdmin) {
+            next();
+        } else {
+            res.status(401);
+            throw new Error("You are not alowed ..");
+        }
+    });
+};
+
+module.exports = { authProtection, verifyAuthorization, verifyAdmin };
