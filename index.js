@@ -15,6 +15,7 @@ const errorHandler = require("./middleware/error");
 app.use(express.json())
 
 //Middleware for  Error handling 
+
 app.use(errorHandler)
 
 // Setup User Routes
