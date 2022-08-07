@@ -3,7 +3,6 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
 //* UPDATE User Data
 
 const update = expressAsyncHandler(async (req, res) => {
@@ -29,20 +28,20 @@ const update = expressAsyncHandler(async (req, res) => {
     }
 });
 
-
 // Delete User Handler
-const delete_user =  expressAsyncHandler(async(req,res)=>{
-        try {
-            const deletedUser = await User.findByIdAndDelete(req.params.id);
-            res.status(200).json(deletedUser)
-        }
-        catch(err){
-            res.status(500)
-            throw new Error("Invalid User Id..")
-        }
-})  
+const delete_user = expressAsyncHandler(async (req, res) => {
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        res.status(200).json(deletedUser);
+    } catch (err) {
+        res.status(500);
+        throw new Error("Invalid User Id..");
+    }
+});
 
+//GET USER
+const get_user = expressAsyncHandler(async (req, res) => {
+    
+});
 
-
-
-module.exports = {update,delete_user};
+module.exports = { update, delete_user,get_user };
