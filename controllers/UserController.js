@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
-//UPDATE
+//* UPDATE User Data
 
 const update = expressAsyncHandler(async (req, res) => {
     if (req.body.password) {
@@ -28,5 +28,18 @@ const update = expressAsyncHandler(async (req, res) => {
         throw new Error("Invalid Credentials");
     }
 });
+
+
+// Delete User Handler
+const delete_user =  expressAsyncHandler(async(req,res)=>{
+        try {
+            const deletedUser = await User.findByIdAndDelete(req.params.id);
+            res.status(200).json(deletedUser)
+        }
+        catch(err){
+            res.status(500)
+            throw new Error("Invalid User Id..")
+        }
+})  
 
 module.exports = {update};

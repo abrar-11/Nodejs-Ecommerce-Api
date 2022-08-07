@@ -44,7 +44,7 @@ const verifyAuthorization = (req, res, next) => {
     });
 };
 
-// * Prevent All users from accessing the route except Admin
+// *Prevent All users from accessing the route except Admin
 
 const verifyAdmin = (req, res, next) => {
     authProtection(req, res, () => {

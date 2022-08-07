@@ -24,7 +24,7 @@ router.post("/login", auth.login);
 
 
 
-//* Login  User
+//* Update  User
 
 router.put("/:id",verifyAuthorization,  userRoute.update);
 
