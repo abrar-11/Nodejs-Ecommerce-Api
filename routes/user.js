@@ -29,6 +29,13 @@ router.post("/login", auth.login);
 router.put("/:id",verifyAuthorization,  userRoute.update);
 
 
+//* Delete  User
+
+router.put("/:id",verifyAuthorization,  userRoute.delete_user);
+
+
+
+
 
 
 

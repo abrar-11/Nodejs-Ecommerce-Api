@@ -42,4 +42,7 @@ const delete_user =  expressAsyncHandler(async(req,res)=>{
         }
 })  
 
-module.exports = {update};
+
+
+
+module.exports = {update,delete_user};
