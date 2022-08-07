@@ -31,7 +31,7 @@ router.put("/:id",verifyAuthorization,  userRoute.update);
 
 //* Delete  User
 
-router.put("/:id",verifyAuthorization,  userRoute.delete_user);
+router.delete("/:id",verifyAuthorization,  userRoute.delete_user);
 
 
 
